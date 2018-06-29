@@ -34,7 +34,6 @@
         box-sizing: border-box;
     }
 
-
     .panelDown {
         float: left;
         width: 450px;
@@ -44,19 +43,8 @@
         border: 1px solid black;
     }
 
-    .p2 {
-        margin-left: 180px;
-
-    }
-
     .alert .panel-heading {
         background: yellow;
-    }
-
-    .p2 ul li {
-        text-decoration: none;
-        list-style: none;
-        text-align: left;
     }
 
     .p3 {
@@ -78,21 +66,5 @@
         padding: 20px;
     }
 
-    table {
-        border-collapse: collapse;
-        margin: 0 auto;
-    }
-
-    thead {
-        color: red;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-    }
-
-    td {
-        width: 200px;
-    }
 
 </style>

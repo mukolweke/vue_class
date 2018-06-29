@@ -1,6 +1,6 @@
 <template>
     <div>
-        Your Order: {{userName}} - {{foodOrder}} ::: Status == {{actionStatus}}
+        Your Order: {{userName}} - {{foodOrder}} ::
     </div>
 
 </template>
@@ -8,22 +8,11 @@
 <script>
     export default {
         name: "display-current-order",
-        props:['userName','foodOrder','actionStatus']
+        props:['userName','foodOrder',]
     }
 </script>
 
 
 <style scoped>
-    * {
-        box-sizing: border-box;
-    }
 
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
 </style>

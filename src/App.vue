@@ -5,11 +5,8 @@
             <div class="panel-heading">Cytonn Cafe</div>
             <div class="panel-body">
                 <make-order><slot></slot></make-order>
-                <display-current-order>
-                    <slot></slot>
-                </display-current-order>
+
                 <hr>
-                <display-order><slot></slot></display-order>
             </div>
         </div>
 
@@ -29,7 +26,6 @@
     import Vue from 'vue';
 
     Vue.component('make-order', require('./components/make-order').default);
-    Vue.component('display-order', require('./components/display-order').default);
     Vue.component('display-customers', require('./components/display-customers').default);
     Vue.component('display-current-order', require('./components/display-current-order').default);
     Vue.component('display-events', require('./components/display-events').default);
@@ -70,6 +66,77 @@
         margin-top: 20px;
         background: transparent;
         border: 1px solid black;
+    }
+
+    .p2 {
+        margin-left: 180px;
+
+    }
+
+    .alert .panel-heading {
+        background: yellow;
+    }
+
+    .del {
+        background: red;
+    }
+
+    .p2 ul li {
+        text-decoration: none;
+        list-style: none;
+        text-align: left;
+    }
+
+    .p3 {
+        margin-left: 10px;
+    }
+
+    .p3 ul li {
+        text-decoration: none;
+        list-style: none;
+        text-align: left;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .panel-heading {
+        background: #9dd85c;
+        height: 30px;
+    }
+
+    .panel-body {
+        padding: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    thead {
+        color: red;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    td {
+        width: 200px;
+    }
+
+    .button {
+        width: 200px;
+        height: 20px;
+        margin: 10px auto;
+    }
+
+    .hidden {
+        visibility: hidden;
     }
 </style>
 // import makeorder from './components/make-order'

@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="panelDown p3">
         <div class="panel-heading">Events</div>
         <div class="panel-body" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">
@@ -6,6 +7,7 @@
                 <li>{{evnt.name}}</li>
             </ul>
         </div>
+    </div>
     </div>
 </template>
 
@@ -15,7 +17,6 @@
 
         data : ()=>{
             return{
-
                 eventsCyt: [
                     {name: "Marathon"},
                     {name: "Cake Cutting"},
@@ -33,22 +34,6 @@
         box-sizing: border-box;
     }
 
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
-
-    .panel {
-        width: 900px;
-        /*height: 200px;*/
-        background: transparent;
-        border: 1px solid black;
-        margin: 0 auto;
-    }
 
     .panelDown {
         float: left;
@@ -68,10 +53,6 @@
         background: yellow;
     }
 
-    .del {
-        background: red;
-    }
-
     .p2 ul li {
         text-decoration: none;
         list-style: none;
@@ -86,12 +67,6 @@
         text-decoration: none;
         list-style: none;
         text-align: left;
-    }
-
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
     }
 
     .panel-heading {
@@ -120,13 +95,4 @@
         width: 200px;
     }
 
-    .button {
-        width: 200px;
-        height: 20px;
-        margin: 10px auto;
-    }
-
-    .hidden {
-        visibility: hidden;
-    }
 </style>

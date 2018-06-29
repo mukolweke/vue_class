@@ -1,10 +1,6 @@
 <template>
     <div>
-       <table>
-           <tr>
-
-           </tr>
-       </table>
+        Your Order: {{userName}} - {{foodOrder}} ::: Status == {{actionStatus}}
     </div>
 
 </template>
@@ -12,7 +8,7 @@
 <script>
     export default {
         name: "display-current-order",
-        props: ['currentOrder']
+        props:['userName','foodOrder','actionStatus']
     }
 </script>
 

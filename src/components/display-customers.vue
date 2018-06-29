@@ -15,6 +15,7 @@
 
         data: ()=>{
             return{
+                isBest: true,
                 bestCustomers: [
                     {username: "William Kamuyo"},
                     {username: "Karanja Raphael"},

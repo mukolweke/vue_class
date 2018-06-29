@@ -9,19 +9,21 @@
         <br/>
         <input class="hidden" type="text" value="Waiting" v-model="actionStatus"/>
     </form>
-    <display-current-order :currentOrder="order"></display-current-order>
+    <display-order :currentOrder="order"></display-order>
+        <display-current-order :userName="order.userName" :foodOrder="order.foodOrder" :currentStatus="actionStatus"></display-current-order>
 </div>
 </template>
 
 <script>
     import Vue from 'vue';
 
-    Vue.component('display-current-order', require('../components/display-order.vue').default);
+    Vue.component('display-order', require('./display-order').default);
+    Vue.component('display-current-order', require('./display-current-order').default);
+
     export default {
         name: "make-order",
         data() {
             return {
-                isBest: false,
                 actionStatus: 'Waiting',
                 order: {},
                 foodOrders: [

@@ -1,6 +1,7 @@
 <template>
 <div>
     <h4>Current Order List</h4>
+    {{currentOrder}}
     <table>
         <thead>
         <tr>
@@ -12,7 +13,7 @@
         </thead>
         <tbody>
 
-        <tr v-bind:key="order.userName" v-for="(order, index) in currentOrder">
+        <tr v-bind:key="order.userName" v-for="(order, index) in foodOrders">
             <td>{{order.userName}}</td>
             <td>{{order.foodOrder}}</td>
             <td>{{order.actionStatus}}</td>
@@ -23,14 +24,37 @@
         </tr>
         </tbody>
     </table>
+    <hr>
 </div>
 </template>
 
 <script>
     export default {
-       data: ()=>{
+        props: ['currentOrder'],
+        data: ()=>{
+            return{
+                actionStatus: 'Waiting',
+                order: {},
+                foodOrders: [
+                    {userName: 'Michael Mukolwe', foodOrder: 'Fish Ugali', actionStatus: 'Waiting'},
+                ],
+            }
+       },
+        //methods....nb: must be in methods container
+        methods: {
+            addToDoOrder() {
+                this.id = Math.random();
+                this.foodOrders.push(this.order);
+                this.order = {};
+                // console.log(this.foodOrders);
+            },
 
-       }
+            delToDoTask(index) {
+
+                this.foodOrders.splice(index, 1);
+                // this.foodOrders = this.foodOrders.filter(order => order.id !== taskObj.id);
+            },
+        }
 
     }
 </script>

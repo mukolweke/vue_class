@@ -9,7 +9,7 @@
                     <slot></slot>
                 </display-current-order>
                 <hr>
-
+                <display-order><slot></slot></display-order>
             </div>
         </div>
 
@@ -29,6 +29,7 @@
     import Vue from 'vue';
 
     Vue.component('make-order', require('./components/make-order').default);
+    Vue.component('display-order', require('./components/display-order').default);
     Vue.component('display-customers', require('./components/display-customers').default);
     Vue.component('display-current-order', require('./components/display-current-order').default);
     Vue.component('display-events', require('./components/display-events').default);

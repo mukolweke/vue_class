@@ -1,23 +1,30 @@
 <template>
     <div id="app">
-        <h1>Hello, Today's Cytonn Food Order</h1>
-        <div class="panel">
-            <div class="panel-heading">Cytonn Cafe</div>
-            <div class="panel-body">
-                <make-order><slot></slot></make-order>
-
-                <hr>
-            </div>
+        <div class="">
+            <ul>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/CreateOrder">Create Order</router-link></li>
+                <li><router-link to="/ViewOrder">View Order</router-link></li>
+            </ul>
+            <router-view></router-view>
         </div>
+        <!--<div class="panel">-->
+            <!--<div class="panel-heading">Cytonn Cafe</div>-->
+            <!--<div class="panel-body">-->
+                <!--<make-order><slot></slot></make-order>-->
 
-        <div class="row">
-            <display-customers>
-                <slot></slot>
-            </display-customers>
-            <display-events>
-                <slot></slot>
-            </display-events>
-        </div>
+                <!--<hr>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="row">-->
+            <!--<display-customers>-->
+                <!--<slot></slot>-->
+            <!--</display-customers>-->
+            <!--<display-events>-->
+                <!--<slot></slot>-->
+            <!--</display-events>-->
+        <!--</div>-->
 
     </div>
 </template>
@@ -129,14 +136,22 @@
         width: 200px;
     }
 
-    .button {
-        width: 200px;
-        height: 20px;
-        margin: 10px auto;
+    h1, h2 {
+        font-weight: normal;
     }
 
-    .hidden {
-        visibility: hidden;
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    a {
+        color: #42b983;
     }
 </style>
 // import makeorder from './components/make-order'

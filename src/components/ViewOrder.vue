@@ -31,7 +31,6 @@
         name: "ViewOrder",
         data() {
             return {
-                actionStatus: 'Waiting',
                 order: {},
                 foodOrders: [
                     {userName: 'Cow', foodOrder: 'Blade Grass'},
@@ -52,6 +51,7 @@
         computed: {
             searchQueryItems() {
                 if(this.searchQuery!==""||this.searchQuery!==null){
+
                     return this.foodOrders;
                 }
                 return this.foodOrders.filter(order=>order.userName.toLowerCase().indexOf(this.searchQuery.toLowerCase())!==-1);

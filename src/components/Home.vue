@@ -21,7 +21,10 @@
 </template>
 
 <script>
+
+
     export default {
+
         name: "Home",
         data: ()=> {
             return{
@@ -40,7 +43,8 @@
             distance_to_convert: function() {
                 return parseInt(this.distance_to)/2 + 10;
             }
-        }
+        },
+
     }
 </script>
 

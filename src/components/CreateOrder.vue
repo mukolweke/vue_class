@@ -4,10 +4,7 @@
         <div class="panel">
             <div class="panel-heading">Cytonn Cafe</div>
             <div class="panel-body">
-                <make-order>
-                    <slot></slot>
-                </make-order>
-
+                <make-order><slot></slot></make-order>
             </div>
         </div>
     </div>

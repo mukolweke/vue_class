@@ -1,31 +1,16 @@
 <template>
     <div id="app">
         <div class="">
+            <h2>Cytonn Food Order Service</h2>
             <ul>
                 <li><router-link to="/">Home</router-link></li>
                 <li><router-link to="/CreateOrder">Create Order</router-link></li>
                 <li><router-link to="/ViewOrder">View Order</router-link></li>
             </ul>
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </div>
-        <!--<div class="panel">-->
-            <!--<div class="panel-heading">Cytonn Cafe</div>-->
-            <!--<div class="panel-body">-->
-                <!--<make-order><slot></slot></make-order>-->
-
-                <!--<hr>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-            <!--<display-customers>-->
-                <!--<slot></slot>-->
-            <!--</display-customers>-->
-            <!--<display-events>-->
-                <!--<slot></slot>-->
-            <!--</display-events>-->
-        <!--</div>-->
-
     </div>
 </template>
 

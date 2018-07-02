@@ -11,7 +11,7 @@
         <div>
             <p>Nearby Shops;</p>
             <ul>
-                <li class="shops" v-for="shop in shops">
+                <li v-bind:key="shop.shopName" class="shops" v-for="shop in shops">
                     {{ shop.shopName }} - {{ shop.Distance }}
                 </li>
             </ul>

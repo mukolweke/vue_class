@@ -1,42 +1,40 @@
 <template>
-<div>
-    <h4>Current Order List</h4>
-    <table>
-        <thead>
-        <tr>
-            <td>CLIENT</td>
-            <td>ORDER</td>
-            <td>CHANGE</td>
-        </tr>
-        </thead>
-        <tbody>
+    <div>
 
-        <tr v-bind:key="order.userName" v-for="(order, index) in currentOrder">
-            <td>{{order.userName}}</td>
-            <td>{{order.foodOrder}}</td>
-            <td>
-                <button class="button del" type="button" v-on:click="delToDoTask(index)">Order Delete
-                </button>
-                <br/></td>
-        </tr>
-        </tbody>
-    </table>
-    <hr>
-</div>
+        <table>
+            <thead>
+            <tr>
+                <td>CLIENT</td>
+                <td>ORDER</td>
+                <td>CHANGE</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr v-bind:key="order.userName" v-for="(order, index) in currentOrder">
+                <td>{{order.userName |caps}}</td>
+                <td>{{order.foodOrder}}</td>
+                <td>
+                    <button class="button del" type="button" v-on:click="delToDoTask(index)">Order Delete
+                    </button>
+                    <br/></td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+    </div>
 </template>
 
 <script>
     export default {
         props: ['currentOrder'],
-        data: ()=>{
-            return{
+        data: () => {
+            return {
                 actionStatus: 'Waiting',
                 order: {},
-                foodOrders: [
-                    {userName: 'Michael Mukolwe', foodOrder: 'Fish Ugali', actionStatus: 'Waiting'},
-                ],
+
             }
-       },
+        },
         //methods....nb: must be in methods container
         methods: {
             addToDoOrder() {
@@ -51,8 +49,32 @@
                 this.currentOrder.splice(index, 1);
                 // this.foodOrders = this.foodOrders.filter(order => order.id !== taskObj.id);
             },
-        }
+        },
+        // watch applied to search
+        /*watch: {
+            foodOrders: function () {
+              return this.foodOrders.filter(order=>order.userName.toLowerCase().indexOf(this.searchQuery.toLowerCase())!==-1);
+            }
+        },*/
 
+
+        // define filter then apply to the target
+        filters: {
+            caps: function (value, onlyFirstCharacter) {
+                if (!value) {
+                    return '';
+                }
+
+                value = value.toString();
+
+                if (onlyFirstCharacter) {
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                } else {
+                    return value.toUpperCase();
+                }
+            }
+
+        }
     }
 </script>
 
@@ -77,6 +99,11 @@
         text-align: left;
     }
 
+    .top ol li {
+        text-decoration: none;
+        list-style: none;
+        text-align: center;
+    }
 
     table {
         border-collapse: collapse;

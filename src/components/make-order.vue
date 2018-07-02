@@ -8,7 +8,7 @@
         <br>
         <div>
             <label>Order: </label>
-            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Kuku Fry" v-model="order.foodOrder"required>
+            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Kuku Fry" v-model="order.foodOrder" required>
         </div>
         <br>
         <div>
@@ -38,7 +38,6 @@
                 foodOrders: [
                     {userName: 'Michael Mukolwe', foodOrder: 'Fish Ugali'},
                 ],
-                props : {order}
 
             }
         },

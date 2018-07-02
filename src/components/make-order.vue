@@ -1,15 +1,24 @@
 <template>
     <div>
     <form>
-        <label>Client Name: </label>
-        <input type="text" class="my-input" v-model="order.userName">
-        <label style="margin-left: 30px;">Food Order: </label>
-        <input type="text" class="my-input" v-model="order.foodOrder"><br/>
-        <button class="button" type="button" v-on:click="addToDoOrder()">Order Food</button>
-        <br/>
+        <div>
+            <label>Username: </label>
+            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Cytonn Username (jdoe)" v-model="order.userName" required>
+        </div>
+        <br>
+        <div>
+            <label>Order: </label>
+            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Kuku Fry" v-model="order.foodOrder"required>
+        </div>
+        <br>
+        <div>
+            <button class="button" type="button" v-on:click="addToDoOrder()" style="width:250px;height: 30px;color: white;background: #9dd85c;">Order Food</button>
+        </div>
     </form>
         <display-current-order :userName="order.userName" :foodOrder="order.foodOrder"></display-current-order>
-    <display-order :currentOrder="foodOrders" ></display-order>
+        <div class="hidden" v-bind:class="orderMade">
+            <p>Food Order Created</p>
+        </div>
 </div>
 </template>
 
@@ -23,11 +32,13 @@
         name: "make-order",
         data() {
             return {
+                orderMade:false,
                 actionStatus: 'Waiting',
                 order: {},
                 foodOrders: [
                     {userName: 'Michael Mukolwe', foodOrder: 'Fish Ugali'},
                 ],
+                props : {order}
 
             }
         },
@@ -37,6 +48,8 @@
                 this.id = Math.random();
                 this.foodOrders.push(this.order);
                 this.order = {};
+                this.orderMade = true;
+                alert('food order created')
             },
 
             delToDoTask(index) {
@@ -51,9 +64,8 @@
 <style scoped>
     * {
         box-sizing: border-box;
+
     }
-
-
     .p2 ul li {
         text-decoration: none;
         list-style: none;

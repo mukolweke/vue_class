@@ -1,45 +1,44 @@
 <template>
     <div id="app">
         <div class="">
+            <h2>Cytonn Food Order Service</h2>
+            <p>{{msg_order}}</p>
             <ul>
                 <li><router-link to="/">Home</router-link></li>
                 <li><router-link to="/CreateOrder">Create Order</router-link></li>
-                <li><router-link to="/ViewOrder">View Order</router-link></li>
+                <li><router-link to="/Comments">Comments</router-link></li>
             </ul>
-            <router-view></router-view>
+            <keep-alive>
+                <router-view></router-view>
+            </keep-alive>
         </div>
-        <!--<div class="panel">-->
-            <!--<div class="panel-heading">Cytonn Cafe</div>-->
-            <!--<div class="panel-body">-->
-                <!--<make-order><slot></slot></make-order>-->
-
-                <!--<hr>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-            <!--<display-customers>-->
-                <!--<slot></slot>-->
-            <!--</display-customers>-->
-            <!--<display-events>-->
-                <!--<slot></slot>-->
-            <!--</display-events>-->
-        <!--</div>-->
-
     </div>
 </template>
 
 <script scoped>
+    import {EventBus} from './components/event-bus';
     import Vue from 'vue';
 
     Vue.component('make-order', require('./components/make-order').default);
+    Vue.component('comments', require('./components/Comments').default);
     Vue.component('display-customers', require('./components/display-customers').default);
     Vue.component('display-current-order', require('./components/display-current-order').default);
     Vue.component('display-events', require('./components/display-events').default);
     export default {
-        // components: {
-        //     makeorder
-        // },
+        data(){
+            return{
+                msg_order:''
+            }
+        },
+        // created hook
+        created(){
+            let vm = this;
+
+            EventBus.$on("foodOrdered", ($data)=>{
+                vm.msg_order = "Food Order Made";
+            });
+
+        },
     }
 
 </script>

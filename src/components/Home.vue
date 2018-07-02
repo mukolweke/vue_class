@@ -11,7 +11,7 @@
         <div>
             <p>Nearby Shops;</p>
             <ul>
-                <li class="shops" v-for="shop in shops">
+                <li v-bind:key="shop.shopName" class="shops" v-for="shop in shops">
                     {{ shop.shopName }} - {{ shop.Distance }}
                 </li>
             </ul>
@@ -21,7 +21,10 @@
 </template>
 
 <script>
+
+
     export default {
+
         name: "Home",
         data: ()=> {
             return{
@@ -40,7 +43,8 @@
             distance_to_convert: function() {
                 return parseInt(this.distance_to)/2 + 10;
             }
-        }
+        },
+
     }
 </script>
 

@@ -8,7 +8,7 @@
         <br>
         <div>
             <label>Order: </label>
-            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Kuku Fry" v-model="order.foodOrder"required>
+            <input type="text" class="my-input" style="height: 30px;width: 150px;" placeholder="Kuku Fry" v-model="order.foodOrder" required>
         </div>
         <br>
         <div>
@@ -16,14 +16,52 @@
         </div>
     </form>
         <display-current-order :userName="order.userName" :foodOrder="order.foodOrder"></display-current-order>
-        <div class="hidden" v-bind:class="orderMade">
-            <p>Food Order Created</p>
+        <!--<div class="hidden" v-bind:class="orderMade">-->
+            <!--<p>Food Order Created</p>-->
+        <!--</div>-->
+        <hr>
+        <div>
+            <p>Search Order</p>
+            <input type="text" v-model="searchQuery">
+
+            <p v-if="isSearching">Searching...</p>
+            <!--<div class="top" v-else>-->
+                <!--<ol>-->
+                    <!--<li v-bind:key="result.foodOrder" v-for="result in searchQueryItems">{{ result.foodOrder }}</li>-->
+                <!--</ol>-->
+            <!--</div>-->
+            <br>
         </div>
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <td>CLIENT</td>
+                    <td>ORDER</td>
+                    <td>CHANGE</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr v-bind:key="foodOrders.id" v-for="(order, index) in searchQueryItems">
+                    <td>{{order.userName |caps}}</td>
+                    <td>{{order.foodOrder}}</td>
+                    <td>
+                        <button class="button del" type="button" v-on:click="delToDoTask(index)">Order Delete
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <hr>
+        </div>
+
 </div>
 </template>
 
 <script>
     import Vue from 'vue';
+    import {EventBus} from "./event-bus";
 
     Vue.component('display-order', require('./display-order').default);
     Vue.component('display-current-order', require('./display-current-order').default);
@@ -33,12 +71,13 @@
         data() {
             return {
                 orderMade:false,
-                actionStatus: 'Waiting',
                 order: {},
                 foodOrders: [
                     {userName: 'Michael Mukolwe', foodOrder: 'Fish Ugali'},
                 ],
-                props : {order}
+                searchQuery: '',
+                results: [],
+                isSearching: false
 
             }
         },
@@ -49,14 +88,42 @@
                 this.foodOrders.push(this.order);
                 this.order = {};
                 this.orderMade = true;
-                alert('food order created')
+                EventBus.$emit("foodOrdered","New Order");
             },
 
             delToDoTask(index) {
 
                 this.foodOrders.splice(index, 1);
             },
-        }
+        },
+
+        filters: {
+            caps: function (value, onlyFirstCharacter) {
+                if (!value) {
+                    return '';
+                }
+
+                value = value.toString();
+
+                if (onlyFirstCharacter) {
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                } else {
+                    return value.toUpperCase();
+                }
+            }
+
+        },
+        computed: {
+            searchQueryItems() {
+                if(this.searchQuery==""){
+
+                    return this.foodOrders;
+                }
+                return this.foodOrders.filter(
+                    order=>(order.foodOrder.toLowerCase().indexOf(this.searchQuery.toLowerCase())!==-1||order.userName.toLowerCase().indexOf(this.searchQuery.toLowerCase())!==-1)
+                );
+            }
+        },
 
     }
 </script>
@@ -64,8 +131,12 @@
 <style scoped>
     * {
         box-sizing: border-box;
-
     }
+
+    .del {
+        background: red;
+    }
+
     .p2 ul li {
         text-decoration: none;
         list-style: none;
@@ -78,13 +149,32 @@
         text-align: left;
     }
 
+    .top ol li {
+        text-decoration: none;
+        list-style: none;
+        text-align: center;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    thead {
+        color: red;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+
+    td {
+        width: 200px;
+    }
+
     .button {
         width: 200px;
         height: 20px;
         margin: 10px auto;
-    }
-
-    .hidden {
-        visibility: hidden;
     }
 </style>

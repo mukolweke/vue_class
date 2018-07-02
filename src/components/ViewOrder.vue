@@ -4,6 +4,17 @@
         <div class="panel">
             <div class="panel-heading">Cytonn Cafe</div>
             <div class="panel-body">
+                <div>
+                    <p>Search Order</p>
+                    <input type="text" v-model="searchQuery">
+
+                    <p v-if="isSearching">Searching...</p>
+                    <div class="top" v-else>
+                        <ol>
+                            <li v-bind:key="result.foodOrder" v-for="result in searchQueryItems">{{ result.foodOrder }}</li>
+                        </ol>
+                    </div>
+                </div>
                 <display-order :currentOrder="foodOrders" ></display-order>
             </div>
         </div>
@@ -14,16 +25,20 @@
 <script>
 
     export default {
+        props:[
+            'userName'
+        ],
         name: "ViewOrder",
         data() {
             return {
-                actionStatus: 'Waiting',
                 order: {},
                 foodOrders: [
                     {userName: 'Cow', foodOrder: 'Blade Grass'},
-                    {userName: 'Fisi', foodOrder: 'Meat'},
+                    {userName: 'fisi', foodOrder: 'Meat'},
                 ],
-
+                searchQuery: '',
+                results: [],
+                isSearching: false
             }
         },
         //methods....nb: must be in methods container
@@ -32,7 +47,16 @@
 
                 this.foodOrders.splice(index, 1);
             },
-        }
+        },
+        computed: {
+            searchQueryItems() {
+                if(this.searchQuery!==""||this.searchQuery!==null){
+
+                    return this.foodOrders;
+                }
+                return this.foodOrders.filter(order=>order.userName.toLowerCase().indexOf(this.searchQuery.toLowerCase())!==-1);
+            }
+        },
     }
 </script>
 
